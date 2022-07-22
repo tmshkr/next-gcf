@@ -2,13 +2,15 @@
   "name": "next-gcf",
   "version": "0.1.0",
   "private": true,
+  "main": "server.js",
   "scripts": {
-    "dev": "next dev",
+    "dev": "NODE_ENV=development functions-framework --target=handleHTTP",
     "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "deploy": "gcloud functions deploy next-gcf --project tmshkr --entry-point=handleHTTP --trigger-http --allow-unauthenticated --security-level=secure-always --runtime=nodejs16",
+    "gcp-build": "npm run build"
   },
   "dependencies": {
+    "@google-cloud/functions-framework": "^3.1.2",
     "next": "12.2.3",
     "react": "18.2.0",
     "react-dom": "18.2.0"
