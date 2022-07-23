@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Unauthorized</title>
+  </head>
+  <style>
+    body {
+      background-color: darkblue;
+      color: white;
+      font-family: monospace;
+      font-size: 1.2em;
+    }
+
+    p {
+      margin: 0;
+    }
+
+    form {
+      display: flex;
+    }
+
+    input {
+      background-color: transparent;
+      border: none;
+      color: inherit;
+      font-family: inherit;
+      font-size: inherit;
+      margin-left: 8px;
+      outline: none;
+      padding: 0;
+      width: 100%;
+    }
+  </style>
+  <body>
+    <p>Cloud Function, Security System Interface</p>
+    <p>Version 4.0.5, Alpha E</p>
+    <p>Ready...</p>
+    <noscript>
+      <form method="GET">
+        > <input type="text" name="magic_word" autofocus />
+      </form>
+    </noscript>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+      function printLines(lines, index = 0) {
+        const isLast = index === lines.length - 1;
+        const line = lines[index];
+        const newLine = document.createElement("p");
+        newLine.id = `line${index}`;
+        newLine.innerHTML = `> <span></span>`;
+        document.body.appendChild(newLine);
+
+        new Typed(`#line${index} span`, {
+          strings: [line],
+          typeSpeed: 42,
+          showCursor: false,
+          onComplete: function (self) {
+            const response = document.createElement("p");
+            response.innerHTML = "access: PERMISSION DENIED.";
+            if (isLast) {
+              response.innerHTML += "...and...";
+              document.body.appendChild(response);
+              printError();
+            } else {
+              document.body.appendChild(response);
+              setTimeout(() => printLines(lines, index + 1), 100);
+            }
+          },
+        });
+      }
+
+      function printError(times = 7) {
+        if (times === 0) {
+          const input = document.createElement("p");
+          input.innerHTML = `<form method="GET">> <input type="text" name="magic_word" /></form>`;
+          document.body.appendChild(input);
+          input.children[0].children[0].focus();
+        } else {
+          setTimeout(() => {
+            const error = document.createElement("p");
+            error.innerHTML = "YOU DIDN'T SAY THE MAGIC WORD!";
+            document.body.appendChild(error);
+            printError(times - 1);
+          }, 100);
+        }
+      }
+
+      printLines([
+        "access security",
+        "access security grid",
+        "access main security grid",
+      ]);
+    </script>
+  </body>
+</html>

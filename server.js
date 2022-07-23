@@ -17,7 +17,7 @@ module.exports.handleHTTP = (req, res) => {
     res.cookie("magic_word", magic_word);
   }
   if (magic_word !== process.env.MAGIC_WORD) {
-    return res.status(401).send("Unauthorized");
+    return res.status(401).sendFile("access-denied.html", { root: "./" });
   }
 
   handler(req, res);
