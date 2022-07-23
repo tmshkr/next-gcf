@@ -5,7 +5,7 @@ const nextConfig = {
   swcMinify: true,
   assetPrefix: isProd
     ? "https://us-central1-tmshkr.cloudfunctions.net/next-gcf"
-    : "",
+    : undefined,
 };
 
 module.exports = nextConfig;
