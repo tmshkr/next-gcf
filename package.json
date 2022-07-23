@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "NODE_ENV=development functions-framework --target=handleHTTP",
     "build": "next build",
-    "deploy": "gcloud functions deploy next-gcf --project tmshkr --entry-point=handleHTTP --trigger-http --allow-unauthenticated --security-level=secure-always --runtime=nodejs16",
+    "deploy": "gcloud functions deploy next-gcf --project tmshkr --entry-point=handleHTTP --trigger-http --allow-unauthenticated --security-level=secure-always --runtime=nodejs16 --env-vars-file .env.prod.yaml",
     "gcp-build": "npm run build"
   },
   "dependencies": {
